@@ -161,7 +161,7 @@ class _DetailFactoryState extends State<DetailFactory> {
     if (fabrica.id == null) {
       factoriesProvider.crearFabrica(fabrica);
     } else {
-      factoriesProvider.edtarFabrica(fabrica);
+      factoriesProvider.editarFabrica(fabrica);
     }
 
     setState(() {
