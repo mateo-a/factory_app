@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:formvalidation/src/models/factory_model.dart';
+import 'package:formvalidation/src/providers/factories_provider.dart';
 import 'package:formvalidation/src/utils/utils.dart' as utils;
 
 class AddFactory extends StatefulWidget {
@@ -9,13 +10,15 @@ class AddFactory extends StatefulWidget {
 
 class _AddFactoryState extends State<AddFactory> {
   final formKey = GlobalKey<FormState>();
+  final factoriesProvider = new FactoriesProvider();
+
   FactoryModel fabrica = new FactoryModel();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fabrica'),
+        title: Text('Agregar Fabrica'),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -133,5 +136,7 @@ class _AddFactoryState extends State<AddFactory> {
     if (!formKey.currentState.validate()) return;
     formKey.currentState.save();
     print('Todo se validó correctamente');
+
+    factoriesProvider.crearFabrica(fabrica);
   }
 }
