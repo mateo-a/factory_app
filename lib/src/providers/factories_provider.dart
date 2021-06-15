@@ -17,4 +17,35 @@ class FactoriesProvider {
 
     return true;
   }
+
+  Future<List<FactoryModel>> cargarFabricas() async {
+    final url = Uri.parse('$_url/fabricas.json');
+    final resp = await http.get(url);
+
+    final Map<String, dynamic> decodedData = json.decode(resp.body);
+    final List<FactoryModel> fabricas = new List();
+
+    if (decodedData == null) return [];
+
+    // Manejo del JSON seleccionando el id y el detalle de factory (fabrica)
+    decodedData.forEach((id, fact) {
+      final factTemp = FactoryModel.fromJson(fact);
+      factTemp.id = id;
+
+      fabricas.add(factTemp);
+    });
+
+    print(fabricas);
+
+    return fabricas;
+  }
+
+  Future<int> borrarFabrica(String id) async {
+    final url = Uri.parse('$_url/fabricas/$id.json');
+    final resp = await http.delete(url);
+
+    print(json.decode(resp.body));
+
+    return 1;
+  }
 }
