@@ -18,6 +18,18 @@ class FactoriesProvider {
     return true;
   }
 
+  Future<bool> edtarFabrica(FactoryModel fabrica) async {
+    final url = Uri.parse('$_url/fabricas/${fabrica.id}.json');
+
+    final resp = await http.put(url, body: factoryModelToJson(fabrica));
+
+    final decodedData = json.decode(resp.body);
+
+    print(decodedData);
+
+    return true;
+  }
+
   Future<List<FactoryModel>> cargarFabricas() async {
     final url = Uri.parse('$_url/fabricas.json');
     final resp = await http.get(url);

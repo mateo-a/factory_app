@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.add_business),
             title: Text('Agregar Fabricas'),
-            onTap: () => Navigator.pushNamed(context, 'agregar'),
+            onTap: () => Navigator.pushNamed(context, 'detalle'),
           ),
         ],
       ),

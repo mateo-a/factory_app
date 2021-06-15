@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:formvalidation/src/models/factory_model.dart';
 import 'package:formvalidation/src/providers/factories_provider.dart';
 
-class ListFactory extends StatelessWidget {
+class ListFactory extends StatefulWidget {
+  @override
+  _ListFactoryState createState() => _ListFactoryState();
+}
+
+class _ListFactoryState extends State<ListFactory> {
   final factoriesProvider = new FactoriesProvider();
 
   @override
@@ -12,7 +17,7 @@ class ListFactory extends StatelessWidget {
         title: Text('Fabricas'),
         actions: [
           IconButton(
-            onPressed: () => Navigator.pushNamed(context, 'agregar'),
+            onPressed: () => Navigator.pushNamed(context, 'detalle'),
             icon: Icon(Icons.add_business),
           )
         ],
@@ -52,14 +57,8 @@ class ListFactory extends StatelessWidget {
           title: Text('${fabricas.nombre}'),
           subtitle: Text('Teléfono: ${fabricas.telefono}'),
           isThreeLine: true,
-          onTap: () => Navigator.pushNamed(context, 'detalle')),
+          onTap: () =>
+              Navigator.pushNamed(context, 'detalle', arguments: fabricas)),
     );
-  }
-
-  _crearBoton(BuildContext context) {
-    return FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Colors.green,
-        onPressed: () => Navigator.pushNamed(context, 'agregar'));
   }
 }
