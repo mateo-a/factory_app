@@ -8,15 +8,20 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text('Home')),
-      body: Container(),
-      floatingActionButton: _crearBoton(context),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            leading: Icon(Icons.business),
+            title: Text('Listar Fabricas'),
+            onTap: () => Navigator.pushNamed(context, 'listar'),
+          ),
+          ListTile(
+            leading: Icon(Icons.add_business),
+            title: Text('Agregar Fabricas'),
+            onTap: () => Navigator.pushNamed(context, 'agregar'),
+          ),
+        ],
+      ),
     );
-  }
-
-  _crearBoton(BuildContext context) {
-    return FloatingActionButton(
-        child: Icon(Icons.add),
-        backgroundColor: Colors.green,
-        onPressed: () => Navigator.pushNamed(context, 'agregar'));
   }
 }
